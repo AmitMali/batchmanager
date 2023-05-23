@@ -1,20 +1,67 @@
 const user = require("../models/userSchema");
 
-const createUserDB = async (req, res) => {
+// create user
+const createUserDB = async (data) => {
   try {
-    console.log(req.body);
-    await user.create(req.body);
-    console.log(user);
-    res.status(201).json({
-      message: "User Created Successfully",
-      user,
-    });
+    const createdUser = await user.create(data);
+    return createdUser;
   } catch (err) {
-    res.status(400).json({
-      message: "Unable to create user",
-      err,
-    });
+    return err;
+  }
+};
+//getUser by email ID
+const getAllUsers = async () => {
+  try {
+    const allUsers = await user.find();
+    return allUsers;
+  } catch (err) {
+    return err;
+  }
+};
+const getUserByEmail = async (email) => {
+  try {
+    const loggedInUser = await user.find({ email: email });
+    return loggedInUser;
+  } catch (err) {
+    return err;
+  }
+};
+//getUser by ID
+const getUserById = async (userId) => {
+  try {
+    const loggedInUser = await user.findById(userId);
+    return loggedInUser;
+  } catch (err) {
+    return err;
   }
 };
 
-module.exports = { createUserDB };
+//update user with respect to id
+const updateUserById = async (userId, dataToUpdate) => {
+  try {
+    const updatedUser = await user.findByIdAndUpdate(userId, dataToUpdate, {
+      new: true,
+    });
+    return updatedUser;
+  } catch (err) {
+    return err;
+  }
+};
+// delete user by id
+const deleteUserByID = async (userId) => {
+  try {
+    const deletedUser = await user.findByIdAndDelete(userId);
+    return deletedUser;
+  } catch (err) {
+    return err;
+  }
+};
+
+module.exports = {
+  createUserDB,
+  getUserByEmail,
+  getUserById,
+  getAllUsers,
+  updateUserById,
+  deleteUserByID,
+};
