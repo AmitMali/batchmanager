@@ -1,0 +1,27 @@
+AUTH Endpoints
+
+Login user (POST /api/auth/login)
+
+USER Endpoints
+
+Get all users (GET /api/users)
+Create a new user (POST /api/users)
+Get a specific user (GET /api/users/:userId)
+Update a specific user (PUT /api/users/:userId)
+Delete a specific user (DELETE /api/users/:userId)
+
+COURSES Endpoints
+
+Get all courses (GET /api/courses)
+Create a new course (POST /api/courses)
+Get a specific course (GET /api/courses/:courseId)
+Update a specific course (PUT /api/courses/:courseId)
+Delete a specific course (DELETE /api/courses/:courseId)
+
+BATCHES endpoints
+
+Get all batches (GET /api/batches)
+Create a new batch (POST /api/batches)
+Get a specific batch (GET /api/batches/:batchId)
+Update a specific batch (PUT /api/batches/:batchId)
+Delete a specific batch (DELETE /api/batches/:batchId)
