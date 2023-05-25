@@ -1,5 +1,6 @@
 const user = require("../models/userSchema");
 const course = require("../models/courseSchema");
+const batch = require("../models/batchSchema");
 // create user
 const createUserDB = async (data) => {
   try {
@@ -84,7 +85,6 @@ const getAllCourses = async () => {
 const getCourseById = async (courseId) => {
   try {
     const courseFound = await course.findById(courseId);
-
     return courseFound;
   } catch (err) {
     return err;
@@ -124,6 +124,57 @@ const deleteCourseByID = async (courseId) => {
     return err;
   }
 };
+
+// batch DB operations
+const createBatchDB = async (data) => {
+  try {
+    const createBatch = await batch.create(data);
+    return createBatch;
+  } catch (err) {
+    return err;
+  }
+};
+
+const getAllBatches = async () => {
+  try {
+    const allBatches = await batch.find();
+    return allBatches;
+  } catch (err) {
+    return err;
+  }
+};
+
+//get batche by ID
+const getBatchById = async (batchId) => {
+  try {
+    const batchFound = await batch.findById(batchId);
+    return batchFound;
+  } catch (err) {
+    return err;
+  }
+};
+
+//update Batch with respect to id
+const updateBatchById = async (batchId, dataToUpdate) => {
+  try {
+    const updatedBatch = await batch.findByIdAndUpdate(batchId, dataToUpdate, {
+      new: true,
+    });
+    return updatedBatch;
+  } catch (err) {
+    return err;
+  }
+};
+// delete Batch by id
+const deleteBatchByID = async (batchId) => {
+  try {
+    const deletedBatch = await batch.findByIdAndDelete(batchId);
+    return deletedBatch;
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   createUserDB,
   getUserByEmail,
@@ -136,4 +187,9 @@ module.exports = {
   getCourseById,
   updateCourseById,
   deleteCourseByID,
+  createBatchDB,
+  getAllBatches,
+  getBatchById,
+  updateBatchById,
+  deleteBatchByID,
 };
