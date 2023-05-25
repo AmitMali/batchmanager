@@ -7,15 +7,17 @@ const apiVersion = "/api/v1";
 
 //route imports
 const homeRoutes = require("./routes/homeRoutes");
-const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const courseRoutes = require("./routes/courseRoutes");
 //middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 //using routes
 app.use(`${apiVersion}/`, homeRoutes);
-app.use(`${apiVersion}/users/`, userRoutes);
 app.use(`${apiVersion}/auth/`, authRoutes);
+app.use(`${apiVersion}/users/`, userRoutes);
+app.use(`${apiVersion}/courses/`, courseRoutes);
 
 module.exports = app;

@@ -1,5 +1,5 @@
 const user = require("../models/userSchema");
-
+const course = require("../models/courseSchema");
 // create user
 const createUserDB = async (data) => {
   try {
@@ -57,6 +57,73 @@ const deleteUserByID = async (userId) => {
   }
 };
 
+//course DB Operation
+
+//show all course
+
+const createCourseDB = async (data) => {
+  try {
+    const createCourse = await course.create(data);
+    return createCourse;
+  } catch (err) {
+    return err;
+  }
+};
+
+// get all courses
+const getAllCourses = async () => {
+  try {
+    const allCourses = await course.find();
+    return allCourses;
+  } catch (err) {
+    return err;
+  }
+};
+
+//getcourse by ID
+const getCourseById = async (courseId) => {
+  try {
+    const courseFound = await course.findById(courseId);
+
+    return courseFound;
+  } catch (err) {
+    return err;
+  }
+};
+//getcourse by Category
+// const getCourseByCategory = async (courseCategory) => {
+//   try {
+//     const course = await course.find();
+//     return course;
+//   } catch (err) {
+//     return err;
+//   }
+// };
+
+//update course with respect to id
+const updateCourseById = async (courseId, dataToUpdate) => {
+  try {
+    const updatedcourse = await course.findByIdAndUpdate(
+      courseId,
+      dataToUpdate,
+      {
+        new: true,
+      }
+    );
+    return updatedcourse;
+  } catch (err) {
+    return err;
+  }
+};
+// delete course by id
+const deleteCourseByID = async (courseId) => {
+  try {
+    const deletedcourse = await course.findByIdAndDelete(courseId);
+    return deletedcourse;
+  } catch (err) {
+    return err;
+  }
+};
 module.exports = {
   createUserDB,
   getUserByEmail,
@@ -64,4 +131,9 @@ module.exports = {
   getAllUsers,
   updateUserById,
   deleteUserByID,
+  createCourseDB,
+  getAllCourses,
+  getCourseById,
+  updateCourseById,
+  deleteCourseByID,
 };
