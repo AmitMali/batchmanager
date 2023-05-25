@@ -8,6 +8,10 @@ const batchSchema = new mongoose.Schema(
       ref: "courses",
       required: true,
     },
+    startDate: {
+      type: Date,
+      require: true,
+    },
     trainerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",

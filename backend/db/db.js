@@ -1,6 +1,7 @@
 const user = require("../models/userSchema");
 const course = require("../models/courseSchema");
 const batch = require("../models/batchSchema");
+const lab = require("../models/labSchema");
 // create user
 const createUserDB = async (data) => {
   try {
@@ -174,6 +175,55 @@ const deleteBatchByID = async (batchId) => {
     return err;
   }
 };
+// Lab DB operations
+const createLabDB = async (data) => {
+  try {
+    const createLab = await lab.create(data);
+    return createLab;
+  } catch (err) {
+    return err;
+  }
+};
+
+const getAllLabs = async () => {
+  try {
+    const allLabs = await lab.find();
+    return allLabs;
+  } catch (err) {
+    return err;
+  }
+};
+
+//get Labe by ID
+const getLabById = async (labId) => {
+  try {
+    const foundedLab = await lab.findById(labId);
+    return foundedLab;
+  } catch (err) {
+    return err;
+  }
+};
+
+//update Lab with respect to id
+const updateLabById = async (labId, dataToUpdate) => {
+  try {
+    const updatedLab = await lab.findByIdAndUpdate(labId, dataToUpdate, {
+      new: true,
+    });
+    return updatedLab;
+  } catch (err) {
+    return err;
+  }
+};
+// delete Lab by id
+const deleteLabByID = async (labId) => {
+  try {
+    const deletedLab = await lab.findByIdAndDelete(labId);
+    return deletedLab;
+  } catch (err) {
+    return err;
+  }
+};
 
 module.exports = {
   createUserDB,
@@ -192,4 +242,9 @@ module.exports = {
   getBatchById,
   updateBatchById,
   deleteBatchByID,
+  createLabDB,
+  getAllLabs,
+  getLabById,
+  updateLabById,
+  deleteLabByID,
 };

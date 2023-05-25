@@ -5,6 +5,7 @@ const app = require("./app");
 const mongoose = require("mongoose");
 const { dbConnect } = require("./services/dbService");
 dbConnect();
+mongoose.connection.setMaxListeners(0);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
